@@ -1,6 +1,6 @@
 # Interior Design AI
 
-Prose word count: 437 (excluding headings and setup commands/code).
+Prose word count: 506 (excluding headings, this line, and setup commands/code).
 
 ## Status
 
@@ -14,12 +14,12 @@ A local prototype for creating AI-assisted room concepts. Choose a room and styl
 
 ## Run locally
 
-Requires Python 3.10+ and an OpenAI API key. From the project root, install the runtime packages and set your own key (or put `OPENAI_API_KEY=your-key` in a root `.env` file):
+Requires Python 3.10+ and an OpenAI API key. From the project root, install packages from `requirements.txt` and set your own key (or put `OPENAI_API_KEY=your-key` in a root `.env` file):
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install fastapi uvicorn openai python-dotenv
+python -m pip install -r requirements.txt
 $env:OPENAI_API_KEY = "your-key"
 uvicorn backend.main:app --reload
 ```
@@ -50,10 +50,15 @@ Manually tested the frontend against six scenarios:
 5. **Preserve preferences:** starting at 70/40/20, changing an unrelated detail leaves slider values unchanged.
 6. **Manual generation:** 90/10/30 generates an image without a description or AI analysis.
 
+## AI Assistance and Individual Contribution
 
-## AI assistance
+This project was developed individually. My primary focus was backend development, including the FastAPI architecture, preference interpretation, prompt construction, API integration and AI description interpretation. I also worked on the frontend, including integrating the interface with the backend and implementing the user interaction flow.
 
-The app uses OpenAI models at runtime as described above. 
+ChatGPT was used as a supporting tool during development and report preparation. I used it to discuss implementation approaches, understand technical issues, debug errors and improve documentation. Suggestions were reviewed and adapted to the actual project rather than accepted automatically.
+
+I remained responsible for the system architecture, implementation decisions and final results. I checked the application by running it, testing its API functionality and completing six functional test scenarios.
 
 ## Additional files
+Python dependencies are listed in [`requirements.txt`](requirements.txt).
+
 Generated image outputs are in `generated_images/`. No accompanying report, documentation bundle, or ZIP file is included.
