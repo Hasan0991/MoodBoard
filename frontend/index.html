@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interior AI Designer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">INTERIOR<span>AI</span></div>
+        <p>Design your space with AI</p>
+    </header>
+
+    <main class="container">
+
+        <section class="intro">
+            <h1>Create a space that reflects your taste.</h1>
+            <p>
+                Define what matters most to you.
+                Our AI will translate your preferences
+                into an interior design concept.
+            </p>
+        </section>
+
+        <div class="designer-layout">
+
+            <!-- LEFT: DESIGN CONTROLS -->
+
+            
+
+<section class="panel controls">
+
+    <h2>Your design preferences</h2>
+
+    <!-- Room selection -->
+    <div class="form-group">
+        <label for="roomType">Room type</label>
+        <select id="roomType">
+            <option value="living room">Living Room</option>
+            <option value="bedroom">Bedroom</option>
+            <option value="kitchen">Kitchen</option>
+            <option value="bathroom">Bathroom</option>
+        </select>
+    </div>
+
+    <!-- Style selection -->
+    <div class="form-group">
+        <label for="style">Interior style</label>
+        <select id="style">
+            <option value="Modern">Modern</option>
+            <option value="Scandinavian">Scandinavian</option>
+            <option value="Minimalist">Minimalist</option>
+            <option value="Industrial">Industrial</option>
+        </select>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Manual priority controls -->
+    <h3>Set your design priorities</h3>
+
+    <p class="description">
+        Adjust the sliders to tell the AI how important
+        each preference is to you. You can do this manually
+        or let AI suggest priorities from your description.
+    </p>
+
+    <div class="priority-control">
+        <div class="priority-heading">
+            <label for="minimalism">Minimalism</label>
+            <span id="minimalismValue">50%</span>
+        </div>
+        <input type="range" id="minimalism"
+            min="0" max="100" value="50">
+    </div>
+
+    <div class="priority-control">
+        <div class="priority-heading">
+            <label for="cosiness">Cosiness</label>
+            <span id="cosinessValue">50%</span>
+        </div>
+        <input type="range" id="cosiness"
+            min="0" max="100" value="50">
+    </div>
+
+    <div class="priority-control">
+        <div class="priority-heading">
+            <label for="colourfulness">Colourfulness</label>
+            <span id="colourfulnessValue">50%</span>
+        </div>
+        <input type="range" id="colourfulness"
+            min="0" max="100" value="50">
+    </div>
+
+    <div id="interpretation" class="interpretation"></div>
+
+    <p class="description">
+        The percentages show the relative importance of
+        your preferences, not the final percentage of the room.
+    </p>
+
+    <div class="divider"></div>
+
+    <!-- Optional natural language description -->
+    <h3>Describe your ideal room (optional)</h3>
+
+    <p class="description">
+        Add specific details such as furniture, materials,
+        lighting, colours or atmosphere. AI can use your
+        description to suggest priority values.
+    </p>
+
+    <textarea
+        id="roomDescription"
+        placeholder="For example: I want a warm and cosy living room with minimalist furniture, neutral colours and natural materials..."
+        rows="6"
+    ></textarea>
+
+    <button id="analyseButton" class="secondary-button">
+        Analyse my description
+    </button>
+    <div id="analysisLoading" class="analysis-loading" hidden>
+    <div class="loading-bar">
+        <div class="loading-bar-progress"></div>
+    </div>
+    <p>
+        <span class="spinner"></span>
+        AI is analysing your design preferences...
+    </p>
+</div>
+
+    <p id="analysisStatus" class="status"></p>
+
+    <!-- AI interpretation, shown after analysis -->
+    <div id="preferencesSection" hidden>
+
+        <div class="divider"></div>
+
+        <h3>AI interpretation</h3>
+
+        <p class="description">
+            Here is how AI understood your description.
+            You can review and change the suggested priorities above.
+        </p>
+
+        <div id="detectedDetails" class="detected-details"></div>
+
+        <div id="aiExplanation" class="interpretation"></div>
+        <div class="suggested-preferences">
+    <h4>AI suggested priorities</h4>
+
+    <p id="suggestedPreferences"></p>
+
+    <button type="button" id="applySuggestionsButton">
+        Apply suggestions
+    </button>
+
+    <button type="button" id="keepCurrentButton"
+        class="secondary-button">
+        Keep my current values
+    </button>
+</div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Generate independently of description analysis -->
+    <button id="generateButton">
+        Generate my design
+    </button>
+    <div id="generationLoading" class="analysis-loading" hidden>
+    <div class="loading-bar">
+        <div class="loading-bar-progress"></div>
+    </div>
+    <p>
+        <span class="spinner"></span>
+        Creating your interior design... This may take a moment.
+    </p>
+</div>
+
+    <p id="status" class="status"></p>
+
+</section>
+
+
+
+
+            <!-- RIGHT: GENERATED DESIGN -->
+
+            <section class="panel preview">
+
+                <h2>Your generated design</h2>
+
+                <div id="imageContainer" class="image-container">
+
+                    <div id="placeholder" class="placeholder">
+                        <div class="placeholder-icon">✦</div>
+                        <h3>Your design will appear here</h3>
+                        <p>
+                            Set your preferences and generate
+                            your first interior concept.
+                        </p>
+                    </div>
+
+                    <img
+                        id="generatedImage"
+                        src=""
+                        alt="AI generated interior design"
+                        hidden
+                    >
+
+                </div>
+
+                
+<div id="historySection" class="history-section">
+
+    <h3>Generation history</h3>
+
+    <div id="history" class="history">
+        <p class="description">
+            Your generated designs will appear here.
+        </p>
+    </div>
+
+    <div id="comparisonSection" class="comparison-section" hidden>
+
+        <h3>Compare designs</h3>
+
+        <div class="comparison-layout">
+
+            <div class="comparison-card">
+                <h4>Previous design</h4>
+                <img id="previousImage" src="" alt="Previous design">
+
+                <div id="previousPreferences"></div>
+            </div>
+
+            <div class="comparison-card">
+                <h4>New design</h4>
+                <img id="newImage" src="" alt="New design">
+
+                <div id="newPreferences"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
