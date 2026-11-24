@@ -18,9 +18,13 @@ Requires Python 3.10+ and an OpenAI API key. From the project root, install pack
 
 ```powershell
 python -m venv .venv
+
 .\.venv\Scripts\Activate.ps1
+
 python -m pip install -r requirements.txt
+
 $env:OPENAI_API_KEY = "your-key"
+
 uvicorn backend.main:app --reload
 ```
 
